@@ -50,6 +50,9 @@ def _ga_run(df, r, o):
             n = fr.n_obs
             try:
                 fc_vol = float(np.ravel(m.forecast(horizon=int(o["h"])).volatility)[-1])
+            except NotImplementedError:
+                fc_vol = float(np.ravel(m.forecast(horizon=1).volatility)[-1])
+                out.notes.append(f"{name}: لا يدعم بعدُ التنبؤ متعدد الخطوات؛ العمود يعرض التنبؤ الدقيق لخطوة واحدة (h=1).")
             except Exception as e:  # noqa: BLE001
                 fc_vol = np.nan
                 out.notes.append(f"{name}: نجح التقدير وتعذّر التنبؤ ({type(e).__name__}: {e}).")
@@ -240,23 +243,20 @@ def _pw_demo():
     return df, {"date": date_col, "price": price, "exog": [c for c in num_cols if c != price][:4]}, {}
 
 
+STATIONARY = {"تلقائي (فروق في causal، مستوى في paper)": None, "فروق أولى": True, "المستوى": False}
+
+
 def _pw_run(df, r, o):
-    import pywt
     from peltwtcn import TrainConfig, run_experiment
     cols = [r["price"], *(r.get("exog") or [])]
     d = df[[r["date"], *cols]].dropna().copy()
     d[r["date"]] = pd.to_datetime(d[r["date"]])
     d = d.set_index(r["date"]).sort_index()
     models = {f"PELT-WT-{k.upper()}": {"detector": o["detector"], "model": k, "multivariate": bool(r.get("exog")),
-                                       "window": int(o["window"]), "train": TrainConfig(epochs=int(o["epochs"]), patience=5)}
+                                       "window": int(o["window"]), "stationary": STATIONARY[o["stationary"]],
+                                       "train": TrainConfig(epochs=int(o["epochs"]), patience=5)}
               for k in o["models"]}
-    # pandas >= 3 (copy-on-write) hands pywt read-only views; give it writable copies
-    orig = pywt.wavedec
-    pywt.wavedec = lambda x, *a, **k: orig(np.array(x, dtype=float), *a, **k)
-    try:
-        res = run_experiment(d, price_col=r["price"], models=models, mode=o["mode"], include_random_walk=True, verbose=False)
-    finally:
-        pywt.wavedec = orig
+    res = run_experiment(d, price_col=r["price"], models=models, mode=o["mode"], include_random_walk=True, verbose=False)
     out = LabResult()
     out.tables["جدول المقارنة (عينة الاختبار)"] = res.table
     fig = go.Figure([go.Scatter(x=res.index, y=res.actual, name="الفعلي", line=dict(color="#475569"))] +
@@ -284,7 +284,9 @@ PELTWTCN = LabSpec(
     roles=[Role("date", "عمود التاريخ", "col"), Role("price", "السعر المستهدف", "num"), Role("exog", "متغيرات خارجية (اختياري)", "nums", optional=True)],
     opts=[Opt("models", "النماذج العميقة", "multi", ["tcn"], ["lstm", "gru", "tcn"]), Opt("detector", "كاشف الانكسارات", "select", "pelt", ["pelt", "bp_icss"]),
           Opt("window", "نافذة الإدخال", "int", 30, min=5, max=120), Opt("epochs", "الحقب", "int", 10, min=2, max=200, step=2),
-          Opt("mode", "الوضع", "select", "causal", ["causal", "paper"])],
+          Opt("mode", "الوضع", "select", "causal", ["causal", "paper"]),
+          Opt("stationary", "الهدف المنمذج", "select", "تلقائي (فروق في causal، مستوى في paper)", list(STATIONARY),
+              help="نمذجة المستوى لسعر ذي اتجاه تفشل خارج العينة لأن الشبكة لا تستقرئ خارج مدى التدريب؛ الفروق تعيد المدخلات إلى مدى مألوف")],
     run=_pw_run, demo=_pw_demo, demo_label="بيانات سوق الكربون الأوروبي EU ETS الحقيقية (6113 مشاهدة يومية 2007–2024)",
     theory=r"""
 **خط أنابيب ثلاثي**: (1) **كشف الانكسارات البنيوية** بخوارزمية PELT (Killick et al., 2012) أو Bai–Perron/ICSS، وتحويلها إلى متغيرات أنظمة؛ (2) **تنقية موجية** للسعر (عتبات شاملة ناعمة على معاملات التفصيل)؛ (3) **تعلم عميق** (LSTM/GRU/TCN) على نوافذ منزلقة مع المتغيرات الخارجية ومتغيرات الأنظمة.
