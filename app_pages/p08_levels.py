@@ -47,6 +47,8 @@ LEVELS = [
      "نموذج مسبق التدريب ووظائف متعددة", "تلوث التدريب المسبق، مراجعات البيانات، درجات حرية خفية"),
 ]
 
+ui.link("app_pages/d02_levels_deep.py", "الشرح المعمق: كل مستوى L0–L7 بآليته ورياضياته ومثاله", ":material/arrow_back:")
+
 tabs = st.tabs([
     ":material/stairs: السلّم L0–L7",
     ":material/zoom_in: مستكشف المستويات",

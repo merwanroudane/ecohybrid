@@ -11,6 +11,8 @@ ui.hero(
     "violet", "teal",
 )
 
+ui.link("app_pages/d01_from_zero.py", "الشرح المعمق: الدمج من الصفر — ماذا ندمج وأين؟", ":material/arrow_back:")
+
 tabs = st.tabs([
     ":material/menu_book: التعريف",
     ":material/output: أنواع المخرجات",

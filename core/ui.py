@@ -3,11 +3,25 @@ callouts, term chips, Plotly styling and play/pause animation controls."""
 
 from __future__ import annotations
 
+import re
 from contextlib import contextmanager
 from html import escape
 
 import plotly.graph_objects as go
 import streamlit as st
+
+from core.mathhtml import tex_to_html
+
+# Inline $...$ inside raw-HTML components is not seen by Streamlit's KaTeX, and st.html
+# strips MathML, so it is converted to plain HTML (Unicode, <sub>/<sup>, CSS fractions).
+_INLINE_MATH = re.compile(r"(?<![\\$])\$(?!\$)([^$\n]+?)(?<!\\)\$(?!\$)")
+
+
+def _math(html: str) -> str:
+    if "$" not in html:
+        return html
+    return _INLINE_MATH.sub(lambda m: f'<span class="imath">{tex_to_html(m.group(1))}</span>', html)
+
 
 # ---------------------------------------------------------------- palette ---
 COLORS = {
@@ -146,6 +160,14 @@ def _css() -> str:
 .refline {{ font-size: .82rem; color: #64748b; border-top: 1px dashed #ddd6fe;
     margin-top: 8px; padding-top: 6px; }}
 .ltr {{ direction: ltr; unicode-bidi: isolate; display: inline-block; }}
+.imath {{ direction: ltr; unicode-bidi: isolate; display: inline-block; }}
+.imath {{ font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", "Times New Roman", serif; font-size: 1.05em; white-space: nowrap; }}
+.imath .mf, .imath .mt {{ font-style: normal; }}
+.imath .mt {{ font-family: inherit; }}
+.imath sub, .imath sup {{ font-size: .72em; }}
+.imath .mfrac {{ display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .92em; margin: 0 .12em; }}
+.imath .mfrac > span:first-child {{ border-bottom: 1px solid currentColor; padding: 0 .15em; }}
+.imath .mover {{ text-decoration: overline; }}
 .foot {{ text-align: center; color: #7c7aa3; font-size: .85rem; margin-top: 40px;
     padding-top: 12px; border-top: 1px dashed #ddd6fe; line-height: 2; }}
 .foot a, .author a, .byline a {{ color: #6d28d9; text-decoration: none; font-weight: 600; }}
@@ -185,7 +207,7 @@ def hero(title: str, en: str, desc: str, c1: str = "violet", c2: str = "sky") ->
         <div class="blob" style="width:160px;height:160px;background:{COLORS[c2]}55;left:140px;bottom:-90px"></div>
         <h1 style="color:{COLORS[c1]}">{title}</h1>
         <div class="en">{escape(en)}</div>
-        <p>{desc}</p></div>"""
+        <p>{_math(desc)}</p></div>"""
     )
 
 
@@ -205,8 +227,8 @@ def cards(items: list[dict], cols: int = 3) -> None:
         icon = it.get("icon", "")
         en = f'<div class="ce">{escape(it["en"])}</div>' if it.get("en") else ""
         parts.append(
-            f'<div class="card" style="--c:{c}"><div class="ct">{icon} {it["title"]}</div>'
-            f'{en}<div class="cb">{it["body"]}</div></div>'
+            f'<div class="card" style="--c:{c}"><div class="ct">{icon} {_math(it["title"])}</div>'
+            f'{en}<div class="cb">{_math(it["body"])}</div></div>'
         )
     st.html(
         f'<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax({int(900 / cols) - 40}px, 1fr));">'
@@ -219,7 +241,7 @@ def chips(pairs: list[tuple[str, str]]) -> None:
     out = []
     for i, (en, ar) in enumerate(pairs):
         n = color_at(i)
-        out.append(f'<span class="chip" style="--c:{COLORS[n]};--t:{TINTS[n]}"><b>{escape(en)}</b> · {ar}</span>')
+        out.append(f'<span class="chip" style="--c:{COLORS[n]};--t:{TINTS[n]}"><b>{escape(en)}</b> · {_math(ar)}</span>')
     st.html('<div class="chips">' + "".join(out) + "</div>")
 
 
@@ -230,9 +252,9 @@ def ladder(steps: list[tuple[str, str, str]], start: int = 1) -> None:
         n = color_at(i)
         rows.append(
             f'<div class="rung"><div class="n" style="background:linear-gradient(160deg,{COLORS[n]},{COLORS[n]}bb)">'
-            f'{i + start}</div><div class="b"><div class="h" style="color:{COLORS[n]}">{h} '
+            f'{i + start}</div><div class="b"><div class="h" style="color:{COLORS[n]}">{_math(h)} '
             f'<span class="ltr" style="font-size:.82rem;color:#64748b">({escape(en)})</span></div>'
-            f'<div class="s">{s}</div></div></div>'
+            f'<div class="s">{_math(s)}</div></div></div>'
         )
     st.html('<div class="ladder">' + "".join(rows) + "</div>")
 

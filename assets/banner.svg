@@ -119,7 +119,7 @@
     <!-- stat chips, right to left -->
     <g class="ar" font-size="17" font-weight="700" text-anchor="middle" direction="rtl">
       <rect x="1102" y="266" width="130" height="40" rx="12" fill="#ffffff" stroke="#ddd6fe"/>
-      <text x="1167" y="292" fill="#6d28d9">31 صفحة</text>
+      <text x="1167" y="292" fill="#6d28d9">40 صفحة</text>
       <rect x="944" y="266" width="148" height="40" rx="12" fill="#ffffff" stroke="#99f6e4"/>
       <text x="1018" y="292" fill="#0f766e">24 مكتبة هجينة</text>
       <rect x="800" y="266" width="134" height="40" rx="12" fill="#ffffff" stroke="#fed7aa"/>
