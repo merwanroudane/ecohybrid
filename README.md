@@ -5,8 +5,8 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white" alt="Python 3.11">
   <img src="https://img.shields.io/badge/Streamlit-1.57%2B-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit 1.57+">
-  <img src="https://img.shields.io/badge/%D8%B5%D9%81%D8%AD%D8%A7%D8%AA-31-7c3aed" alt="31 pages">
-  <img src="https://img.shields.io/badge/%D9%85%D9%83%D8%AA%D8%A8%D8%A7%D8%AA%20%D9%87%D8%AC%D9%8A%D9%86%D8%A9-24-0d9488" alt="24 hybrid libraries">
+  <img src="https://img.shields.io/badge/lecture%20pages-31-7c3aed" alt="31 pages">
+  <img src="https://img.shields.io/badge/hybrid%20libraries-24-0d9488" alt="24 hybrid libraries">
   <a href="https://pypi.org/user/merwan.roudane/"><img src="https://img.shields.io/badge/PyPI-merwan.roudane-3775A9?logo=pypi&logoColor=white" alt="PyPI: merwan.roudane"></a>
 </p>
 
