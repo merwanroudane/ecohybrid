@@ -147,7 +147,19 @@ def _css() -> str:
     margin-top: 8px; padding-top: 6px; }}
 .ltr {{ direction: ltr; unicode-bidi: isolate; display: inline-block; }}
 .foot {{ text-align: center; color: #7c7aa3; font-size: .85rem; margin-top: 40px;
-    padding-top: 12px; border-top: 1px dashed #ddd6fe; }}
+    padding-top: 12px; border-top: 1px dashed #ddd6fe; line-height: 2; }}
+.foot a, .author a, .byline a {{ color: #6d28d9; text-decoration: none; font-weight: 600; }}
+.foot a:hover, .author a:hover, .byline a:hover {{ text-decoration: underline; }}
+/* developer credit */
+.author {{ background: linear-gradient(135deg, #ede9fe, #ccfbf1); border: 1px solid #ddd6fe;
+    border-radius: 14px; padding: 12px 14px; margin-top: 6px; }}
+.author .lbl {{ font-size: .75rem; color: #6d28d9; font-weight: 700; letter-spacing: .3px; }}
+.author .nm {{ font-family: Cairo, sans-serif; font-size: 1.15rem; font-weight: 800; color: #1e1b4b; }}
+.author .en {{ font-size: .85rem; color: #475569; }}
+.author .links {{ font-size: .82rem; margin-top: 4px; }}
+.byline {{ display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: -4px 0 14px;
+    padding: 10px 16px; background: #ffffff; border: 1px solid #ede9fe; border-radius: 14px; font-size: .92rem; color: #475569; }}
+.byline b {{ color: #1e1b4b; font-family: Cairo, sans-serif; }}
 {tint_rules}
 </style>
 """
@@ -243,9 +255,34 @@ def refs(text: str) -> None:
     st.html(f'<div class="refline">📚 {text}</div>')
 
 
+AUTHOR_AR = "د. مروان رودان"
+AUTHOR_EN = "Dr Merwan Roudane"
+AUTHOR_GITHUB = "https://github.com/merwanroudane"
+AUTHOR_PYPI = "https://pypi.org/user/merwan.roudane/"
+
+
+def _author_links() -> str:
+    return (f'<a href="{AUTHOR_GITHUB}" target="_blank" rel="noopener">GitHub</a> · '
+            f'<a href="{AUTHOR_PYPI}" target="_blank" rel="noopener">PyPI</a>')
+
+
+def author_card() -> None:
+    """Developer credit for the sidebar."""
+    st.html(f'<div class="author"><div class="lbl">إعداد وتطوير</div><div class="nm">{AUTHOR_AR}</div>'
+            f'<div class="en"><span class="ltr">{AUTHOR_EN}</span></div>'
+            f'<div class="links"><span class="ltr">{_author_links()}</span></div></div>')
+
+
+def byline() -> None:
+    """Developer credit under a page hero."""
+    st.html(f'<div class="byline">إعداد وتطوير: <b>{AUTHOR_AR}</b> <span class="ltr">({AUTHOR_EN})</span>'
+            f'<span class="ltr">{_author_links()}</span></div>')
+
+
 def footer() -> None:
     st.html('<div class="foot">دليل الدمج بين الذكاء الاصطناعي والقياس الاقتصادي · '
-            '<span class="ltr">AI × Econometrics Integration Guide</span></div>')
+            '<span class="ltr">AI × Econometrics Integration Guide</span><br>'
+            f'إعداد وتطوير: <b>{AUTHOR_AR}</b> <span class="ltr">({AUTHOR_EN}) © 2026 · {_author_links()}</span></div>')
 
 
 # ------------------------------------------------------------------ plots ---

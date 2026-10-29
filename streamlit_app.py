@@ -7,6 +7,8 @@ st.set_page_config(
     page_icon=":material/hub:",
     layout="wide",
     initial_sidebar_state="expanded",
+    menu_items={"About": "**AI × Econometrics** — دليل الدمج بين الذكاء الاصطناعي والقياس الاقتصادي.\n\n"
+                         "إعداد وتطوير: **د. مروان رودان (Dr Merwan Roudane)** · https://github.com/merwanroudane"},
 )
 ui.setup()
 
@@ -80,6 +82,7 @@ with st.sidebar:
     st.markdown("### :violet[AI] × :orange[Econometrics]")
     st.caption("دليل نظري شامل للباحثين حول الدمج بين الذكاء الاصطناعي والقياس الاقتصادي، "
                "من الجذور إلى آخر التطورات (2026).")
+    ui.author_card()
 
 page.run()
 ui.footer()

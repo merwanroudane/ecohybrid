@@ -3,6 +3,10 @@
 </p>
 
 <p align="center">
+  <a href="https://ecohybrid.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit"></a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white" alt="Python 3.11">
   <img src="https://img.shields.io/badge/Streamlit-1.57%2B-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit 1.57+">
   <img src="https://img.shields.io/badge/lecture%20pages-31-7c3aed" alt="31 pages">
@@ -15,7 +19,9 @@
 منصة Streamlit عربية (من اليمين إلى اليسار، شريط جانبي على اليمين) تقدم محاضرة نظرية شاملة حول الدمج بين الذكاء الاصطناعي والقياس الاقتصادي:
 من الجذور قبل الدمج إلى آخر التطورات في أكتوبر 2026، مع المصطلحات الإنجليزية، ومخططات Mermaid، ورسوم متحركة بزر ▶ Play، ومختبرات محاكاة تفاعلية.
 
-إعداد: **Dr Merwan Roudane** — <https://github.com/merwanroudane>
+إعداد وتطوير: **د. مروان رودان (Dr Merwan Roudane)** — <https://github.com/merwanroudane>
+
+**جرّب المنصة مباشرة:** <https://ecohybrid.streamlit.app/>
 
 ## التشغيل
 
