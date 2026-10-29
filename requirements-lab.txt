@@ -1,0 +1,30 @@
+# Applied lab: Dr Merwan Roudane's AI x econometrics libraries (PyPI).
+# Several pull in torch or tensorflow; install on top of requirements.txt.
+-r requirements.txt
+matplotlib
+openpyxl
+pywavelets
+pragdml
+ardldml
+tsdml
+oracle-varx
+dynpanelai
+mllpanel
+deeppanel
+mlpaneldata
+panelxai
+drgct
+shapneurgc
+castor-causal
+nonparmtvcsq
+samovar-var
+gpvar
+tvwnn
+hybridmetrics
+bartardl
+garchai
+hybridecon
+harlstmgarch
+peltwtcn
+wkrls
+qqkrls

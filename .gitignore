@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local tooling
+.claude/
+
+# Generated lab outputs
+hybridecon_outputs/
+*_outputs/
+
+# Reference material kept locally only (copyrighted books, private notes)
+*.pdf
+*.html
