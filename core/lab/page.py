@@ -90,8 +90,18 @@ def _validate(spec: LabSpec, roles: dict) -> list[str]:
     return errs
 
 
+def _not_installed(spec: LabSpec) -> None:
+    st.warning(f"مكتبة **{spec.pip}** غير مثبّتة على هذا الخادم (بعض المكتبات تعتمد على PyTorch أو TensorFlow ولا تتسع لها "
+               "الاستضافة المجانية). الشرح النظري والدليل التطبيقي متاحان أعلاه؛ ولتشغيل المختبر ثبّت المكتبة وشغّل المنصة على جهازك:",
+               icon=":material/cloud_off:")
+    st.code(f"pip install {spec.pip}\nstreamlit run streamlit_app.py", language="bash")
+
+
 def _render_result(spec: LabSpec, payload: dict) -> None:
     res, log, err, dt = payload["res"], payload["log"], payload["err"], payload["dt"]
+    if err.startswith("ModuleNotFoundError"):
+        _not_installed(spec)
+        return
     if err:
         st.error("تعذّر التنفيذ. راجع المتغيرات والخيارات (مثل طول العينة أو نوع البيانات).", icon=":material/error:")
         with st.expander("تفاصيل الخطأ"):
@@ -151,6 +161,9 @@ def render_lab(spec: LabSpec) -> None:
     else:
         try:
             df, defaults, over = _demo(spec.key)
+        except ModuleNotFoundError:
+            _not_installed(spec)
+            return
         except Exception as e:  # noqa: BLE001
             st.error(f"تعذّر تحميل البيانات التجريبية: {e}")
             return
