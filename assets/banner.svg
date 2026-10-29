@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="t d">
+  <title id="t">AI × Econometrics — دليل الدمج بين الذكاء الاصطناعي والقياس الاقتصادي</title>
+  <desc id="d">A neural network feeding a time-series model, beside the platform title, its key numbers and the author's name.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f3ff"/>
+      <stop offset="0.55" stop-color="#f0fdfa"/>
+      <stop offset="1" stop-color="#fff7ed"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="0.5" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="series" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0.02"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#4c1d95" flood-opacity="0.10"/>
+    </filter>
+    <clipPath id="frame"><rect width="1280" height="420" rx="28"/></clipPath>
+  </defs>
+
+  <style>
+    .ar   { font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", "Geeza Pro", Arial, sans-serif; }
+    .en   { font-family: "Segoe UI", Inter, "Helvetica Neue", Arial, sans-serif; }
+    .node { fill: #ffffff; stroke-width: 3; }
+    .edge { stroke: #c4b5fd; stroke-width: 1.6; stroke-dasharray: 5 7; animation: flow 1.6s linear infinite; }
+    .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-in-out infinite; }
+    .p2 { animation-delay: .4s } .p3 { animation-delay: .8s } .p4 { animation-delay: 1.2s }
+    .draw { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 5s ease-in-out infinite; }
+    .fit  { stroke-dasharray: 8 8; animation: flow 2.2s linear infinite; }
+    .blob { animation: drift 14s ease-in-out infinite alternate; }
+    .b2 { animation-duration: 18s }
+    @keyframes flow  { to { stroke-dashoffset: -24; } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+    @keyframes draw  { 0% { stroke-dashoffset: 900; } 55%,85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -900; } }
+    @keyframes drift { to { transform: translate(40px, -20px); } }
+    @media (prefers-reduced-motion: reduce) {
+      .edge, .pulse, .fit, .blob { animation: none; }
+      .draw { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="420" fill="url(#bg)"/>
+    <circle class="blob" cx="140" cy="60" r="150" fill="#c4b5fd" opacity="0.45" filter="url(#soft)"/>
+    <circle class="blob b2" cx="1180" cy="380" r="170" fill="#99f6e4" opacity="0.5" filter="url(#soft)"/>
+    <circle class="blob" cx="760" cy="-20" r="120" fill="#fed7aa" opacity="0.5" filter="url(#soft)"/>
+    <!-- faint grid -->
+    <g stroke="#7c3aed" stroke-opacity="0.05">
+      <path d="M0 70H1280M0 140H1280M0 210H1280M0 280H1280M0 350H1280"/>
+      <path d="M80 0V420M160 0V420M240 0V420M320 0V420M400 0V420M480 0V420"/>
+    </g>
+  </g>
+
+  <!-- ===== left: AI (network) × Econometrics (time-series model) ===== -->
+  <g transform="translate(48 70)">
+    <rect width="500" height="280" rx="22" fill="#ffffff" fill-opacity="0.78" stroke="#ede9fe" filter="url(#shadow)"/>
+
+    <!-- neural network -->
+    <g>
+      <line class="edge" x1="46" y1="70"  x2="126" y2="50"/>
+      <line class="edge" x1="46" y1="70"  x2="126" y2="140"/>
+      <line class="edge" x1="46" y1="70"  x2="126" y2="230"/>
+      <line class="edge" x1="46" y1="140" x2="126" y2="50"/>
+      <line class="edge" x1="46" y1="140" x2="126" y2="140"/>
+      <line class="edge" x1="46" y1="140" x2="126" y2="230"/>
+      <line class="edge" x1="46" y1="210" x2="126" y2="50"/>
+      <line class="edge" x1="46" y1="210" x2="126" y2="140"/>
+      <line class="edge" x1="46" y1="210" x2="126" y2="230"/>
+      <line class="edge" x1="126" y1="50"  x2="196" y2="140"/>
+      <line class="edge" x1="126" y1="140" x2="196" y2="140"/>
+      <line class="edge" x1="126" y1="230" x2="196" y2="140"/>
+      <circle class="node pulse"    cx="46"  cy="70"  r="11" stroke="#8b5cf6"/>
+      <circle class="node pulse p2" cx="46"  cy="140" r="11" stroke="#8b5cf6"/>
+      <circle class="node pulse p3" cx="46"  cy="210" r="11" stroke="#8b5cf6"/>
+      <circle class="node pulse p2" cx="126" cy="50"  r="11" stroke="#6366f1"/>
+      <circle class="node pulse p3" cx="126" cy="140" r="11" stroke="#6366f1"/>
+      <circle class="node pulse p4" cx="126" cy="230" r="11" stroke="#6366f1"/>
+      <circle class="node pulse p4" cx="196" cy="140" r="13" stroke="#0d9488"/>
+      <text class="en" x="121" y="268" text-anchor="middle" font-size="13" font-weight="600" fill="#6d28d9" letter-spacing="1.5">AI</text>
+    </g>
+
+    <!-- merge sign -->
+    <circle cx="238" cy="140" r="19" fill="#f5f3ff" stroke="#c4b5fd"/>
+    <text class="en" x="238" y="147" text-anchor="middle" font-size="22" font-weight="700" fill="#7c3aed">×</text>
+
+    <!-- econometric model: series, fit, forecast band -->
+    <g transform="translate(272 34)">
+      <path d="M0 212H208M0 212V0" stroke="#cbd5e1" stroke-width="1.5" fill="none"/>
+      <path d="M150 64 C170 58 190 50 208 40 L208 120 C190 128 170 132 150 134 Z" fill="url(#band)"/>
+      <path class="fit" d="M0 176 C60 150 110 116 208 80" stroke="#f59e0b" stroke-width="2.4" fill="none"/>
+      <path class="draw" d="M0 182 L14 168 L26 176 L40 150 L54 160 L68 138 L82 146 L96 120 L110 132 L124 104 L138 112 L150 96 L164 90 L178 82 L192 76 L208 70"
+            stroke="url(#series)" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="150" y1="0" x2="150" y2="212" stroke="#a78bfa" stroke-dasharray="3 5"/>
+      <text class="en" x="104" y="234" text-anchor="middle" font-size="13" font-weight="600" fill="#0f766e" letter-spacing="1.5">ECONOMETRICS</text>
+    </g>
+  </g>
+
+  <!-- ===== right: title block (RTL) ===== -->
+  <g>
+    <rect x="1036" y="58" width="196" height="30" rx="15" fill="#ede9fe"/>
+    <text class="en" x="1134" y="78" text-anchor="middle" font-size="14" font-weight="600" fill="#6d28d9">Streamlit · 2026</text>
+
+    <text class="en" x="1232" y="152" text-anchor="end" font-size="64" font-weight="800" fill="url(#title)" letter-spacing="-1">AI × Econometrics</text>
+
+    <text class="ar" x="1232" y="202" direction="rtl" text-anchor="start" font-size="26" font-weight="700" fill="#1e1b4b">دليل الدمج بين الذكاء الاصطناعي والقياس الاقتصادي</text>
+    <text class="ar" x="1232" y="238" direction="rtl" text-anchor="start" font-size="18" fill="#475569">من الجذور إلى آخر التطورات · مستويات الدمج L0–L7 · مختبر تطبيقي حي</text>
+
+    <!-- stat chips, right to left -->
+    <g class="ar" font-size="17" font-weight="700" text-anchor="middle" direction="rtl">
+      <rect x="1102" y="266" width="130" height="40" rx="12" fill="#ffffff" stroke="#ddd6fe"/>
+      <text x="1167" y="292" fill="#6d28d9">31 صفحة</text>
+      <rect x="944" y="266" width="148" height="40" rx="12" fill="#ffffff" stroke="#99f6e4"/>
+      <text x="1018" y="292" fill="#0f766e">24 مكتبة هجينة</text>
+      <rect x="800" y="266" width="134" height="40" rx="12" fill="#ffffff" stroke="#fed7aa"/>
+      <text x="867" y="292" fill="#c2410c">213 مصطلحًا</text>
+      <rect x="664" y="266" width="126" height="40" rx="12" fill="#ffffff" stroke="#fbcfe8"/>
+      <text x="727" y="292" fill="#be185d">151 مرجعًا</text>
+    </g>
+
+    <line x1="664" y1="334" x2="1232" y2="334" stroke="#e9d5ff"/>
+    <text class="en" x="1232" y="364" text-anchor="end" font-size="17" font-weight="700" fill="#4c1d95">Dr Merwan Roudane</text>
+    <text class="en" x="1032" y="364" text-anchor="end" font-size="15" fill="#64748b">github.com/merwanroudane</text>
+  </g>
+</svg>
