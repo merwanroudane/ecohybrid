@@ -167,4 +167,10 @@ R = [
     ("الكتب المرجعية", "Nokeri, T. C.", 2022, "Econometrics and Data Science", "Apress", "10.1007/978-1-4842-7434-7", "كتاب"),
     ("الكتب المرجعية", "Hastie, T., Tibshirani, R., Friedman, J.", 2009, "The Elements of Statistical Learning (2nd ed.)", "Springer", "10.1007/978-0-387-84858-7", "كتاب"),
     ("الكتب المرجعية", "Roudane, M.", 2026, "الموسوعة الأكاديمية للدمج بين القياس الاقتصادي والذكاء الاصطناعي", "موسوعة نظرية عربية (39 فصلًا، 75 مرجعًا)", "", "كتاب"),
+    # ------------------------------------------- from Dr Merwan Roudane's lecture on integration mechanisms
+    ("هجين السلاسل والتنبؤ", "Rügamer, D., Kolb, C., Klein, N.", 2023, "Semi-Structured Distributional Regression", "The American Statistician", "10.1080/00031305.2022.2164054", "محكّم"),
+    ("الذكاء التوليدي والقياس", "Dell, M., Rambachan, A.", 2026, "The Measurement Revolution? Credible Measurement and Inference in the Age of AI", "NBER Working Paper 35744", "https://www.nber.org/papers/w35744", "ورقة عمل"),
+    ("هجين السلاسل والتنبؤ", "Hyndman, R. J., Athanasopoulos, G.", 2021, "Forecasting: Principles and Practice (3rd ed.) — Time series cross-validation", "OTexts", "https://otexts.com/fpp3/tscv.html", "كتاب"),
+    ("الذكاء التوليدي والقياس", "Duan, J., Pelger, M.", 2026, "Inference with AI-Generated Covariates", "NBER Working Paper 35481", "https://www.nber.org/papers/w35481", "ورقة عمل"),
+    ("تعلم الآلة السببي", "Bennett, A., Kallus, N., Schnabel, T.", 2019, "Deep Generalized Method of Moments for Instrumental Variable Analysis", "NeurIPS 2019 (arXiv 1905.12495)", "https://arxiv.org/abs/1905.12495", "محكّم"),
 ]

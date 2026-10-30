@@ -100,6 +100,12 @@ mindmap
       Inference
       Combination and decision
       Complete worked cases
+    Lecture 48 chapters
+      Interfaces and directions
+      Residual learning proof
+      Identifiability and orthogonality
+      Joint training and gradients
+      Protocol quiz glossary
     Methods
       Double ML
       Causal forests
@@ -139,6 +145,10 @@ mindmap
                  "آلية الدمج الفعلية (إشارات النموذج القياسي، واجهات الاتصال، عامل الدمج، دورة التدريب)، الدمج على مستوى المكونات، "
                  "ثم كل آلية بالتفصيل: البواقي (من FWL إلى DML وهجين Zhang)، المعلومات، الشكل الدالي، دالة الهدف، الاستدلال، التوليف والقرار، "
                  "وخمس حالات تطبيقية كاملة بالكود."},
+        {"title": "محاضرة: فلسفة وآليات الدمج (48 فصلًا)", "en": "Lecture by Dr Merwan Roudane", "icon": "🎓",
+         "body": "ست صفحات بترتيب فصول المحاضرة: الواجهات الثماني والاتجاهات الثلاثة، كيف يتعلم كل نموذج، الدمج عبر البواقي وبرهانه، Stacking وGating، "
+                 "المتغيرات المولدة، عدم التحديد وحلوله الأربعة، التعامد الهندسي مقابل تعامد نيمان، التدريب المشترك ورجوع التدرج، DML من الصفر، "
+                 "ECM العصبي واستقراره، LSTM، فضاء الحالة، البانل، التعلم بالنقل، الحلّالات العصبية، بروتوكول التطوير، تطبيق Python حي، أسئلة وقاموس."},
         {"title": "المنهجيات والتطبيقات", "en": "Methods", "icon": "🔬",
          "body": "DML، الغابات السببية، المتعلمات الوصفية، تعلم السياسات، التنبؤ، النص والصورة، النماذج الهيكلية، LLMs، والاتجاه المعاكس."},
         {"title": "الخوارزميات الهجينة المتخصصة", "en": "Specialized hybrid algorithms", "icon": "🧬",
