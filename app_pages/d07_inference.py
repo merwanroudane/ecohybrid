@@ -24,6 +24,7 @@ tabs = st.tabs([
     ":material/radar: التنبؤ المطابق",
     ":material/compare: مقارنة التنبؤات إحصائيًا",
     ":material/science: مختبر: التغطية الهامشية والشرطية",
+    ":material/rule: الاختبارات المدعومة بالذكاء الاصطناعي: الحجم والقوة",
 ])
 
 # --------------------------------------------------------------------------- 1
@@ -277,3 +278,86 @@ with tabs[8]:
         "- الموزون محليًا يقترب من 90% في كل شريحة تقريبًا، أي تغطية شرطية أفضل، بعرض يتكيف مع الضوضاء.",
         "ماذا نتعلم؟", "sky", "🧪",
     )
+
+# --------------------------------------------------------------------------- 10
+with tabs[9]:
+    ui.section("عندما يصبح التعلم الآلي جزءًا من اختبار إحصائي", "ML-assisted tests: size and power", "rose")
+    st.markdown(
+        "شبكة أو غابة تُستخدم لاختبار سببية غرانجر اللاخطية، أو جذر وحدة، أو تغير هيكلي. يمر الدمج هنا بأربع مراحل، ولا يكفي أن «يرفض» النموذج الفرضية:"
+    )
+    ui.ladder([
+        ("الفرضيتان اقتصاديًا", "Define H0 and H1", "مثلًا H0: ماضي x لا يحسّن التنبؤ بـ y بأي شكل، خطي أو لاخطي."),
+        ("قاعدة الكشف", "Detection rule", "معمارية الشبكة أو المتعلم، والإحصاءة (فرق الخسارة، مقياس الأهمية، ...)."),
+        ("توزيع الإحصاءة تحت H0", "Null distribution", "من نظرية تقاربية، أو bootstrap، أو تبديل، أو مونت كارلو. **بدونه لا يوجد اختبار.**"),
+        ("الحجم والقوة", "Size and power", "محاكاة تحت H0 لقياس معدل الرفض الخاطئ (يجب أن يقارب α)، وتحت بدائل لقياس القوة، عبر أحجام عينات وأحجام شبكات."),
+    ])
+    st.latex(r"\widehat{\text{size}}=\frac1R\sum_{r=1}^{R}\mathbb 1\{\text{reject}_r\mid H_0\}\ \approx\ \alpha,\qquad \widehat{\text{power}}(\delta)=\frac1R\sum_{r=1}^{R}\mathbb 1\{\text{reject}_r\mid H_1(\delta)\}")
+    ui.note(
+        "**مصدر الخلل الأكثر شيوعًا:** النموذج غير المقيد (مع x) أكثر مرونة من المقيد، فيتلاءم **داخل العينة** أفضل دائمًا حتى لو لم يكن لـ x أي أثر. "
+        "إحصاءة مبنية على أخطاء داخل العينة ترفض H0 تقريبًا في كل مرة: حجم متضخم يُقرأ خطأً «سببيةً لاخطية». الضبط (tuning) واختيار حجم الشبكة "
+        "بعد رؤية النتيجة يزيدان التضخم.",
+        "لماذا تفشل الاختبارات الساذجة؟", "rose", "⚠️",
+    )
+    ui.section("مختبر مونت كارلو: غرانجر بغابة عشوائية", "Random-forest Granger test, simulated", "indigo")
+    st.markdown(
+        "تحت H0 لا يؤثر $x$ في $y$. تحت H1 يضاف $\delta\,\sin(2x_{t-1})$ إلى معادلة $y$. نقارن إحصاءتين لفرق مربع الخطأ بين غابة مقيدة "
+        "(ماضي y فقط) وغير مقيدة (ماضي y وx)، باختبار t أحادي الجانب عند α = 5%:\n"
+        "- **داخل العينة:** الغابتان مدربتان ومقيَّمتان على العينة نفسها.\n"
+        "- **خارج العينة:** تدريب على أول 60% وتقييم على آخر 40%."
+    )
+    c1, c2, c3, c4 = st.columns(4)
+    n = c1.select_slider("حجم العينة", [150, 300, 600], value=300, key="mlt_n")
+    delta = c2.slider("قوة الأثر تحت H1 (δ)", 0.1, 1.5, 1.0, 0.1, key="mlt_d")
+    reps = c3.select_slider("عدد التكرارات", [60, 100, 200], value=100, key="mlt_r")
+    cap = c4.selectbox("سعة الغابة", ["منظَّمة (أوراق ≥ 20، عمق 4)", "مفرطة المرونة (أوراق ≥ 3، عمق 6)"], key="mlt_cap")
+    leaf, depth = (20, 4) if cap.startswith("منظَّمة") else (3, 6)
+
+    @st.cache_data(show_spinner="تشغيل مونت كارلو (قد يستغرق دقيقة)...")
+    def mc_test(n, delta, reps, leaf, depth, seed=0):
+        from sklearn.ensemble import RandomForestRegressor
+        rng = np.random.default_rng(seed)
+
+        def onesided_t(d):
+            return d.mean() / (d.std(ddof=1) / np.sqrt(len(d)) + 1e-12)
+
+        out = {"H0": [0, 0], "H1": [0, 0]}
+        for scen, eff in (("H0", 0.0), ("H1", delta)):
+            for _ in range(reps):
+                m = n + 50
+                x, y = np.zeros(m), np.zeros(m)
+                for t in range(1, m):
+                    x[t] = 0.6 * x[t - 1] + rng.normal()
+                    y[t] = 0.5 * y[t - 1] + eff * np.sin(2 * x[t - 1]) + rng.normal()
+                x, y = x[50:], y[50:]
+                tgt, Xr, Xu = y[1:], y[:-1, None], np.column_stack([y[:-1], x[:-1]])
+                rf = lambda: RandomForestRegressor(30, max_depth=depth, min_samples_leaf=leaf, random_state=0)  # noqa: E731
+                # in-sample: fit and evaluate on the same data
+                er = tgt - rf().fit(Xr, tgt).predict(Xr)
+                eu = tgt - rf().fit(Xu, tgt).predict(Xu)
+                out[scen][0] += onesided_t(er ** 2 - eu ** 2) > 1.645
+                # out-of-sample: train on first 60 %, evaluate on the rest
+                c = int(0.6 * len(tgt))
+                er = tgt[c:] - rf().fit(Xr[:c], tgt[:c]).predict(Xr[c:])
+                eu = tgt[c:] - rf().fit(Xu[:c], tgt[:c]).predict(Xu[c:])
+                out[scen][1] += onesided_t(er ** 2 - eu ** 2) > 1.645
+        return {k: [v[0] / reps, v[1] / reps] for k, v in out.items()}
+
+    if st.button("شغّل المحاكاة", type="primary", icon=":material/play_arrow:", key="mlt_run"):
+        st.session_state["mlt_res"] = (n, delta, reps, cap, mc_test(n, delta, reps, leaf, depth))
+    if "mlt_res" in st.session_state:
+        n0, d0, r0, cap0, res = st.session_state["mlt_res"]
+        st.dataframe(pd.DataFrame([
+            ("داخل العينة (ساذج)", res["H0"][0], res["H1"][0]),
+            ("خارج العينة", res["H0"][1], res["H1"][1]),
+        ], columns=["الإحصاءة", "معدل الرفض تحت H0 (الحجم، الهدف 0.05)", f"معدل الرفض تحت H1 (القوة، δ={d0})"]).round(3), hide_index=True)
+        st.caption(f"n = {n0}، {r0} تكرارًا لكل سيناريو، سعة الغابة: {cap0}. خطأ مونت كارلو في الحجم ≈ ±0.04 مع 100 تكرار.")
+        ui.note(
+            "**القراءة:** الإحصاءة الداخلية ترفض H0 في معظم التكرارات رغم أن x لا يؤثر إطلاقًا: حجمها بعيد جدًا عن 5%، فرفضها تحت H1 لا يعني شيئًا. "
+            "مع غابة **منظَّمة** تحافظ الإحصاءة الخارجية على حجم قريب من 5%، وقوتها تزيد مع δ ومع n. لكن اختر **مفرطة المرونة**: يتضخم الحجم "
+            "حتى خارج العينة، لأن الغابة المقيدة ذات المتغير الواحد تفرط في التوفيق، وإضافة متغير عديم الأثر تجعل الأشجار أنعم فتبدو «مفيدة». "
+            "**الدرس:** الاختبار الصالح يُعرف حجمه أولًا، وسعة النموذجين المقارَنين يجب أن تُضبط بعناية لا أن تُترك افتراضية.",
+            "ماذا يظهر المختبر؟", "indigo", "🧪",
+        )
+    else:
+        st.caption("اضغط «شغّل المحاكاة» لتقدير الحجم والقوة.")
+    ui.refs("Clark & West (2007) J. Econometrics 138(1)؛ Diebold & Mariano (1995)؛ Tank et al. (2022) IEEE TPAMI «Neural Granger causality»؛ موسوعة آلية الدمج — د. مروان رودان (2026).")

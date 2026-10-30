@@ -39,7 +39,9 @@ pages = {
     "الدمج بالتفصيل: من الصفر إلى الأحدث": [
         P("d01_from_zero.py", "الدمج من الصفر: ماذا ندمج وأين؟", "start"),
         P("d02_levels_deep.py", "المستويات L0–L7 بالتفصيل", "stairs"),
+        P("d10_mechanism.py", "آلية الدمج الفعلية: الإشارات والواجهات", "cable"),
         P("d03_residuals.py", "الدمج عبر البواقي", "merge"),
+        P("d11_components.py", "الدمج على مستوى المكونات (التفكيك)", "waterfall_chart"),
         P("d04_information.py", "الدمج في المعلومات والمتغيرات", "dataset"),
         P("d05_function.py", "الدمج في الشكل الدالي والمعلمات", "function"),
         P("d06_objective.py", "الدمج في دالة الهدف والتقدير", "target"),

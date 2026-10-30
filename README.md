@@ -9,7 +9,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white" alt="Python 3.11">
   <img src="https://img.shields.io/badge/Streamlit-1.57%2B-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit 1.57+">
-  <img src="https://img.shields.io/badge/lecture%20pages-40-7c3aed" alt="40 pages">
+  <img src="https://img.shields.io/badge/lecture%20pages-42-7c3aed" alt="42 pages">
   <img src="https://img.shields.io/badge/hybrid%20libraries-24-0d9488" alt="24 hybrid libraries">
   <a href="https://pypi.org/user/merwan.roudane/"><img src="https://img.shields.io/badge/PyPI-merwan.roudane-3775A9?logo=pypi&logoColor=white" alt="PyPI: merwan.roudane"></a>
 </p>
@@ -44,7 +44,7 @@ pip install -r requirements-lab.txt
 | الجذور والتاريخ | ما قبل الدمج · الخط الزمني وموجات الدمج · ثورة البيانات الضخمة وغير المهيكلة |
 | الأسس النظرية | الثقافتان · مفاهيم تعلم الآلة · الخوارزميات بعين قياسية |
 | المفهوم والمستويات والمنهج | مفهوم الدمج · مستويات الدمج L0–L7 · كيف ندمج؟ |
-| الدمج بالتفصيل: من الصفر إلى الأحدث | الدمج من الصفر · المستويات L0–L7 بالتفصيل · البواقي · المعلومات · الشكل الدالي · دالة الهدف · الاستدلال · التوليف والقرار · حالات كاملة |
+| الدمج بالتفصيل: من الصفر إلى الأحدث | الدمج من الصفر · المستويات L0–L7 بالتفصيل · آلية الدمج الفعلية · البواقي · المكونات · المعلومات · الشكل الدالي · دالة الهدف · الاستدلال · التوليف والقرار · حالات كاملة |
 | المنهجيات والتطبيقات | تعلم الآلة السببي · الأثر غير المتجانس · التنبؤ · النص والصورة · الهيكلي · الذكاء التوليدي · القياس لخدمة الذكاء الاصطناعي |
 | الخوارزميات الهجينة المتخصصة | هجين السلاسل الزمنية · هجين البانل والتصاميم السببية · التعلم المعزز · الشبكات الموجّهة بالنظرية · ثورة القياس · النماذج التأسيسية والرمزية |
 | المختبر التطبيقي لمكتبات المؤلف | مدير البيانات · DML والسببية · البانل · سببية غرانجر · VAR/ARDL · التقلب والتنبؤ · النواة والموجات والكمّيات |

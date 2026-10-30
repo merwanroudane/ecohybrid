@@ -14,3 +14,8 @@ hybridecon_outputs/
 # Reference material kept locally only (copyrighted books, private notes)
 *.pdf
 *.html
+
+# Stray outputs from other analyses saved in the project root
+/*.png
+/*.gph
+/*.log

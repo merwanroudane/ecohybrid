@@ -188,6 +188,7 @@ with tabs[3]:
         {"title": "الهجين ثنائي الاتجاه", "color": "emerald",
          "body": "تعلم آلي أولًا لالتقاط اللاخطية، ثم نموذج قياسي على البواقي لاستعادة البنية الخطية القابلة للتفسير."},
     ], cols=3)
+    ui.link("app_pages/d11_components.py", "الدمج عبر المكونات بالتفصيل: التفكيك وإعادة التركيب وفخ المرشحات ثنائية الجانب", ":material/waterfall_chart:")
     ui.refs("Zhang (2003) Neurocomputing 50:159–175؛ Taskaya-Temizel & Casey (2005) Neural Networks 18(5–6)؛ Khashei & Bijari (2011) Applied Soft Computing 11(2).")
 
 # --------------------------------------------------------------------------- 5
