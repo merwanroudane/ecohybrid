@@ -119,13 +119,13 @@
     <!-- stat chips, right to left -->
     <g class="ar" font-size="17" font-weight="700" text-anchor="middle" direction="rtl">
       <rect x="1102" y="266" width="130" height="40" rx="12" fill="#ffffff" stroke="#ddd6fe"/>
-      <text x="1167" y="292" fill="#6d28d9">48 صفحة</text>
+      <text x="1167" y="292" fill="#6d28d9">52 صفحة</text>
       <rect x="944" y="266" width="148" height="40" rx="12" fill="#ffffff" stroke="#99f6e4"/>
       <text x="1018" y="292" fill="#0f766e">24 مكتبة هجينة</text>
       <rect x="800" y="266" width="134" height="40" rx="12" fill="#ffffff" stroke="#fed7aa"/>
-      <text x="867" y="292" fill="#c2410c">213 مصطلحًا</text>
+      <text x="867" y="292" fill="#c2410c">233 مصطلحًا</text>
       <rect x="664" y="266" width="126" height="40" rx="12" fill="#ffffff" stroke="#fbcfe8"/>
-      <text x="727" y="292" fill="#be185d">151 مرجعًا</text>
+      <text x="727" y="292" fill="#be185d">160 مرجعًا</text>
     </g>
 
     <line x1="664" y1="334" x2="1232" y2="334" stroke="#e9d5ff"/>

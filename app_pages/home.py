@@ -72,6 +72,12 @@ with tabs[1]:
         """
 mindmap
   root((AI × Econometrics))
+    Why integrate
+      Breiman two cultures
+      Varian exchange of tools
+      Outcome motives
+      Unstructured data and AI measurement
+      When not to integrate
     Roots
       Cowles Commission
       Lucas & Sims critiques
@@ -134,6 +140,10 @@ mindmap
     )
     ui.section("أقسام الدليل وصفحاته", "Sections and pages", "violet")
     ui.cards([
+        {"title": "المحاضرة التأسيسية: لماذا ندمج؟", "en": "Foundational lecture by Dr Merwan Roudane", "icon": "🧭",
+         "body": "أربع صفحات بأقسام المحاضرة الاثنين والعشرين: ثلاثة دوافع للدمج (فلسفة بريمان، تبادل الأدوات عند فاريان، ثورة البيانات غير المهيكلة)، ودوافع «المكسب» "
+                 "(دقة التنبؤ والتقدير، تقليل التحيز، عدم يقين أصدق، التوقيت، التغطية، القرار…)، ميكانيزم تحويل النص والصورة إلى متغير، خطابات البنك المركزي، "
+                 "صور الفقر، ثورة القياس 2026 وعينة التحقق، متى لا ندمج، خريطة الباحث، أسئلة نقدية، قاموس واختبار."},
         {"title": "الجذور والتاريخ", "en": "Roots & history", "icon": "🏛️",
          "body": "ما قبل الدمج وحدوده، الخط الزمني التفاعلي وموجات الدمج الست، ثورة البيانات الضخمة وغير المهيكلة."},
         {"title": "الأسس النظرية", "en": "Foundations", "icon": "🧱",

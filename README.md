@@ -9,7 +9,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white" alt="Python 3.11">
   <img src="https://img.shields.io/badge/Streamlit-1.57%2B-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit 1.57+">
-  <img src="https://img.shields.io/badge/lecture%20pages-48-7c3aed" alt="48 pages">
+  <img src="https://img.shields.io/badge/lecture%20pages-52-7c3aed" alt="52 pages">
   <img src="https://img.shields.io/badge/hybrid%20libraries-24-0d9488" alt="24 hybrid libraries">
   <a href="https://pypi.org/user/merwan.roudane/"><img src="https://img.shields.io/badge/PyPI-merwan.roudane-3775A9?logo=pypi&logoColor=white" alt="PyPI: merwan.roudane"></a>
 </p>
@@ -41,6 +41,7 @@ pip install -r requirements-lab.txt
 | القسم | الصفحات |
 |---|---|
 | المدخل | الرئيسية وخريطة الدليل |
+| المحاضرة التأسيسية: لماذا ندمج؟ | السؤال والدوافع وبريمان وفاريان · ماذا يأخذ كل مجال من الآخر · ثورة البيانات وقياس يولّده AI · من الدوافع إلى الآلية وخريطة الباحث |
 | الجذور والتاريخ | ما قبل الدمج · الخط الزمني وموجات الدمج · ثورة البيانات الضخمة وغير المهيكلة |
 | الأسس النظرية | الثقافتان · مفاهيم تعلم الآلة · الخوارزميات بعين قياسية |
 | المفهوم والمستويات والمنهج | مفهوم الدمج · مستويات الدمج L0–L7 · كيف ندمج؟ |
