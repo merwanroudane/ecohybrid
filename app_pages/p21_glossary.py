@@ -1,9 +1,13 @@
+import importlib
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from core import ui
-from core.glossary_data import G
+from core import glossary_data, ui
+
+# reload so content pushed to the repo shows without restarting the app
+G = importlib.reload(glossary_data).G
 
 ui.hero(
     "مسرد المصطلحات الإنجليزية–العربية",

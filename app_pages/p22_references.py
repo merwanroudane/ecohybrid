@@ -1,9 +1,13 @@
+import importlib
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from core import ui
-from core.refs_data import R
+from core import refs_data, ui
+
+# reload so content pushed to the repo shows without restarting the app
+R = importlib.reload(refs_data).R
 
 ui.hero(
     "المراجع والقراءات",
